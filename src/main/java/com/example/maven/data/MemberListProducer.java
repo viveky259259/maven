@@ -30,7 +30,7 @@ public class MemberListProducer {
       return members;
    }
 
-   public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Member member) {
+   public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS)  Member member) {
       retrieveAllMembersOrderedByName();
    }
 
