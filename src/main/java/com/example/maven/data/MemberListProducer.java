@@ -20,14 +20,14 @@ public class MemberListProducer {
    @Inject
    private EntityManager em;
 
-   private List<Member> members;
+   private List<Member> memberList;
 
    // @Named provides access the return value via the EL variable name "members" in the UI (e.g.,
    // Facelets or JSP view)
    @Produces
    @Named
    public List<Member> getMembers() {
-      return members;
+      return memberList;
    }
 
    public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS)  Member member) {
@@ -43,6 +43,6 @@ public class MemberListProducer {
       // feature in JPA 2.0
       // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
       criteria.select(member).orderBy(cb.asc(member.get("name")));
-      members = em.createQuery(criteria).getResultList();
+      memberList = em.createQuery(criteria).getResultList();
    }
 }
